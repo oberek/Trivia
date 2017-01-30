@@ -1,0 +1,32 @@
+body{
+    background-color: #3F3F3E;
+}
+
+button{
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    color: white;
+    text-shadow:0px 1px 0px #263666;
+    border: 0px;
+}
+
+#answer1 {
+    background-color: #00B2EE;
+}
+
+#answer2 {
+    background-color: #FEC123;
+}
+
+#answer3 {
+    background-color: #D24D3B;
+}
+
+#answer4 {
+    background-color: #8CAB3C;
+}
+
+button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
+}
