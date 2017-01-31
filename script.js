@@ -7,24 +7,24 @@ loadData();
 var questionNumber = 0;
 
 function loadComplete(evt) {
-    console.log("It does it");
+    //console.log("It does it");
     triviaData = JSON.parse(request.responseText);
     console.log(triviaData);
     if(questionNumber<triviaData.results.length){
-    document.getElementById("Question").innerHTML = triviaData.results[questionNumber].question;
-    var answers = triviaData.results[questionNumber].incorrect_answers;
-    answers.push(triviaData.results[questionNumber].correct_answer);
-    answers = shuffle(answers);
-    document.getElementById("answer1").innerHTML = answers[0];
-    document.getElementById("answer2").innerHTML = answers[1];
-    document.getElementById("answer3").innerHTML = answers[2];
-    document.getElementById("answer4").innerHTML = answers[3];
-
+        document.getElementById("Question").innerHTML = triviaData.results[questionNumber].question;
+        var answers = triviaData.results[questionNumber].incorrect_answers;
+        answers.push(triviaData.results[questionNumber].correct_answer);
+        answers = shuffle(answers);
+        document.getElementById("answer1").innerHTML = answers[0];
+        document.getElementById("answer2").innerHTML = answers[1];
+        document.getElementById("answer3").innerHTML = answers[2];
+        document.getElementById("answer4").innerHTML = answers[3];
+        //alert("Correct Answer: " + triviaData.results[questionNumber].correct_answer);
         questionNumber++;
     }
     else{
         alert("NEW DATA NOW!");
-        questionNumber =0;
+        questionNumber = 0;
         loadData();
     }
 }
@@ -37,10 +37,7 @@ function loadData(){
 function saveUserData(){
     //document.cookie
 }
-function onAnswer(){
-    //load new question please :)
-    loadComplete;
-}
+
 function shuffle(array) {
     // Essential Copy Pasting from StackOverflow
     var currentIndex = array.length, temporaryValue, randomIndex;
