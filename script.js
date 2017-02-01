@@ -23,13 +23,27 @@ function loadComplete(evt) {
         questionNumber++;
     }
     else{
-        alert("NEW DATA NOW!");
+        //alert("NEW DATA NOW!");
         questionNumber = 0;
         loadData();
     }
 }
+function startTimer(duration) {
+    var seconds_left = duration;
+    var interval = setInterval(function() {
+
+        console.log(seconds_left);
+
+        if (seconds_left <= 0)
+        {
+            document.getElementById('TimerLabel').innerHTML = 'You are ready';
+            clearInterval(interval);
+        }
+        seconds_left--;
+    }, 1000);
+}
 function loadData(){
-    request.open('GET','https://opentdb.com/api.php?amount=15');
+    request.open('GET','https://opentdb.com/api.php?amount=50');
     request.onload = loadComplete;
     request.send();
 }
