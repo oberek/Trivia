@@ -5,22 +5,67 @@ var triviaData;
 var request = new XMLHttpRequest();
 loadData();
 var questionNumber = 0;
+var url = "https://www.opentdb.com/api.php?amount=10&category=";
+var score = 0;
+var answers = [];
+var previousCorrectAnswer = "";
 
-function loadComplete(evt) {
-    console.log("It does it");
+function loadComplete(num) {
+    document.getElementById('Header').innerHTML = "Question " + (questionNumber+1);
     triviaData = JSON.parse(request.responseText);
-    console.log(triviaData);
-    if(questionNumber<triviaData.results.length){
-    document.getElementById("Question").innerHTML = triviaData.results[questionNumber].question;
-    var answers = triviaData.results[questionNumber].incorrect_answers;
-    answers.push(triviaData.results[questionNumber].correct_answer);
-    answers = shuffle(answers);
-    document.getElementById("answer1").innerHTML = answers[0];
-    document.getElementById("answer2").innerHTML = answers[1];
-    document.getElementById("answer3").innerHTML = answers[2];
-    document.getElementById("answer4").innerHTML = answers[3];
+    if(questionNumber-1 >= 0)
+        previousCorrectAnswer = triviaData.results[questionNumber-1].correct_answer;
+    previous_answers = [];
 
+    if(questionNumber<triviaData.results.length){
+        document.getElementById("Question").innerHTML = triviaData.results[questionNumber].question;
+        if(answers.length>0){
+            previous_answers = answers.slice()
+        }
+        answers = triviaData.results[questionNumber].incorrect_answers;
+        answers.push(triviaData.results[questionNumber].correct_answer);
+        answers = shuffle(answers);
+        document.getElementById("answer1").innerHTML = answers[0];
+        document.getElementById("answer2").innerHTML = answers[1];
+        document.getElementById("answer3").innerHTML = answers[2];
+        document.getElementById("answer4").innerHTML = answers[3];
         questionNumber++;
+        if (answers.length == 1) {
+            document.getElementById("answer1").innerHTML = answers[0];
+            document.getElementById("answer2").style.visibility = 'hidden';
+            document.getElementById("answer3").style.visibility = 'hidden';
+            document.getElementById("answer4").style.visibility = 'hidden';
+        } else if (answers.length == 2) {
+            document.getElementById("answer2").style.visibility = 'visible';
+            document.getElementById("answer1").innerHTML = answers[0];
+            document.getElementById("answer2").innerHTML = answers[1];
+            document.getElementById("answer3").style.visibility = 'hidden';
+            document.getElementById("answer4").style.visibility = 'hidden';
+        } else if (answers.length == 3) {
+            document.getElementById("answer3").style.visibility = 'visible';
+
+            document.getElementById("answer1").innerHTML = answers[0];
+            document.getElementById("answer2").innerHTML = answers[1];
+            document.getElementById("answer3").innerHTML = answers[2];
+
+            document.getElementById("answer4").style.visibility = 'hidden';
+
+        } else if (answers.length == 4) {
+            document.getElementById("answer2").style.visibility = 'visible';
+            document.getElementById("answer3").style.visibility = 'visible';
+            document.getElementById("answer4").style.visibility = 'visible';
+            document.getElementById("answer1").innerHTML = answers[0];
+            document.getElementById("answer2").innerHTML = answers[1];
+            document.getElementById("answer3").innerHTML = answers[2];
+            document.getElementById("answer4").innerHTML = answers[3];
+        }
+        console.log("Their answer: " + previous_answers[num]);
+        console.log("Correct answer: " +previousCorrectAnswer);
+        if(previous_answers[num] == triviaData.results[questionNumber-2].correct_answer){
+            score += 10;
+        }
+        document.getElementById("score").innerHTML = score;
+        startTimer(10);
     }
     else{
         alert("NEW DATA NOW!");
@@ -28,18 +73,32 @@ function loadComplete(evt) {
         loadData();
     }
 }
-function loadData(){
-    request.open('GET','https://opentdb.com/api.php?amount=15');
+function loadData(num){
+    if(num == null)
+        request.open('GET','https://opentdb.com/api.php?amount=50');
+    else{
+        request.open('GET','https://opentdb.com/api.php?amount=50&category='+num);
+    }
     request.onload = loadComplete;
     request.send();
 }
-
-function saveUserData(){
-    //document.cookie
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
 }
-function onAnswer(){
-    //load new question please :)
-    loadComplete;
+
+function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
 }
 function shuffle(array) {
     // Essential Copy Pasting from StackOverflow
@@ -59,4 +118,21 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+function startTimer(duration) {
+    clearInterval();
+    var seconds_left = duration;
+    var interval = setInterval(function() {
+
+        //console.log(seconds_left);
+        document.getElementById('TimerLabel').innerHTML = seconds_left;
+
+        if (seconds_left <= 0)
+        {
+            document.getElementById('TimerLabel').innerHTML = 'You are ready';
+            clearInterval(interval);
+        }
+        seconds_left--;
+    }, 1000);
 }

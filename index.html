@@ -8,13 +8,48 @@
 <body>
     <script src="script.js"></script>
     <p id="JSON"></p>
-
+    <h1 id="Header">Question</h1>
+    <ul>
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Categories</button>
+            <div id="myDropdown" class="dropdown-content">
+                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                <a onclick="loadData(9)">General Knowledge</a>
+                <a onclick="loadData(10)">Books</a>
+                <a onclick="loadData(11)">Film</a>
+                <a onclick="loadData(12)">Music</a>
+                <a onclick="loadData(13)">Musicals/Theatre</a>
+                <a onclick="loadData(14)">Television</a>
+                <a onclick="loadData(15)">Video Games</a>
+                <a onclick="loadData(16)">Board Games</a>
+                <a onclick="loadData(17)">Science</a>
+                <a onclick="loadData(18)">Computers</a>
+                <a onclick="loadData(19)">Math</a>
+                <a onclick="loadData(20)">Mythology</a>
+                <a onclick="loadData(21)">Sports</a>
+                <a onclick="loadData(22)">Geography</a>
+                <a onclick="loadData(23)">History</a>
+                <a onclick="loadData(24)">Politics</a>
+                <a onclick="loadData(25)">Art</a>
+                <a onclick="loadData(26)">Celebrities</a>
+                <a onclick="loadData(27)">Animals</a>
+                <a onclick="loadData(28)">Vehicles</a>
+                <a onclick="loadData(29)">Comics</a>
+                <a onclick="loadData(30)">Gadgets</a>
+                <a onclick="loadData(31)">Anime</a>
+                <a onclick="loadData(32)">Cartoons</a>
+            </div>
+        </div>
+    </ul>
     <h3 id="Question"></h3>
-    <button id="answer1" onclick="loadComplete()"></button>
-    <button id="answer2" onclick="loadComplete()"></button>
-    <button id="answer3" onclick="loadComplete()"></button>
-    <button id="answer4" onclick="loadComplete()"></button>
-
+    <div id="Buttons">
+        <button id="answer1" onclick="loadComplete(0)"></button>
+        <button id="answer2" onclick="loadComplete(1)"></button>
+        <button id="answer3" onclick="loadComplete(2)"></button>
+        <button id="answer4" onclick="loadComplete(3)"></button>
+    </div>
+    <p id="score"></p>
+    <label id="TimerLabel"></label>
 </body>
 <footer>
 
