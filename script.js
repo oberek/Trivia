@@ -8,8 +8,14 @@ var questionNumber = 0;
 var score = 0;
 var answers = [];
 var previousCorrectAnswer = "";
+var threeDaysFromNow = new Date() + 3;
+console.log(document.cookie);
+if(document.cookie != ""){
+    score = document.cookie.split(";")[0].replace('\D','')
+}
 
 function loadComplete(num) {
+    document.cookie = "score="+score+";expires="+threeDaysFromNow;
     document.getElementById('Header').innerHTML = "Question " + (questionNumber+1);
     triviaData = JSON.parse(request.responseText);
     if(questionNumber-1 >= 0)

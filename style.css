@@ -57,7 +57,7 @@ button:hover {
 }
 #myInput {
     border-box: box-sizing;
-    background-image: url('searchicon.png');
+    background-image: url('media/searchicon.png');
     background-position: 14px 12px;
     background-repeat: no-repeat;
     font-size: 16px;
