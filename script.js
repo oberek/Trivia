@@ -5,7 +5,6 @@ var triviaData;
 var request = new XMLHttpRequest();
 loadData();
 var questionNumber = 0;
-var url = "https://www.opentdb.com/api.php?amount=10&category=";
 var score = 0;
 var answers = [];
 var previousCorrectAnswer = "";
