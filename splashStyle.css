@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+body {
+    background-image: url("media/backgroundSplash.jpg");
+}
+
+#logo{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 850px;
+    height: 425px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-family: "Century Gothic", sans-serif;
+    border-radius: 3px;
+    width: 500px;
+    margin: 10px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+#myInput {
+    border-box: box-sizing;
+    background-image: url('media/searchicon.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    overflow: auto;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd}
+
+.show {display:block;}
+
+#Difficulty{
+    margin: 20px auto;
+    width: 656px;
+}
+
+#submit{
+    width: 140px;
+    height: 100px;
+    position: absolute;
+    right: 60px;
+    background-color: #ff4146;
+    font-size:30px;
+    font-weight: bolder;
+}
+table{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+#highScoreDisplay{
+    /*margin-left: 50px;*/
+    font-family: "Permanent Marker", serif;
+}

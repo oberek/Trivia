@@ -1,30 +1,24 @@
-/**
- * Created by Maciej on 1/26/2017.
- */
 var triviaData;
 var request = new XMLHttpRequest();
 loadData();
 var questionNumber = 0;
+var realQuestionNumber = 0;
 var score = 0;
 var answers = [];
 var previousCorrectAnswer = "";
-var threeDaysFromNow = new Date() + 3;
-console.log(document.cookie);
-if(document.cookie != ""){
-    score = document.cookie.split(";")[0].replace('\D','')
-}
 
 function loadComplete(num) {
-    document.cookie = "score="+score+";expires="+threeDaysFromNow;
-    document.getElementById('Header').innerHTML = "Question " + (questionNumber+1);
+    realQuestionNumber++;
+    document.getElementById('Header').innerHTML = "Question " + (realQuestionNumber);
     triviaData = JSON.parse(request.responseText);
-    if(questionNumber-1 >= 0)
-        previousCorrectAnswer = triviaData.results[questionNumber-1].correct_answer;
+    console.log(triviaData);
+    if (questionNumber - 1 >= 0)
+        previousCorrectAnswer = triviaData.results[questionNumber - 1].correct_answer;
     previous_answers = [];
 
-    if(questionNumber<triviaData.results.length){
+    if (questionNumber < triviaData.results.length) {
         document.getElementById("Question").innerHTML = triviaData.results[questionNumber].question;
-        if(answers.length>0){
+        if (answers.length > 0) {
             previous_answers = answers.slice()
         }
         answers = triviaData.results[questionNumber].incorrect_answers;
@@ -65,45 +59,27 @@ function loadComplete(num) {
             document.getElementById("answer4").innerHTML = answers[3];
         }
         console.log("Their answer: " + previous_answers[num]);
-        console.log("Correct answer: " +previousCorrectAnswer);
-        if(previous_answers[num] == triviaData.results[questionNumber-2].correct_answer){
+        console.log("Correct answer: " + previousCorrectAnswer);
+        if (previous_answers[num] == triviaData.results[questionNumber - 2].correct_answer) {
             score += 10;
         }
         document.getElementById("score").innerHTML = score;
-        startTimer(10);
     }
-    else{
-        alert("NEW DATA NOW!");
-        questionNumber =0;
+    else {
+        questionNumber = 0;
         loadData();
     }
 }
-function loadData(num){
-    if(num == null)
-        request.open('GET','https://opentdb.com/api.php?amount=50');
-    else{
-        request.open('GET','https://opentdb.com/api.php?amount=50&category='+num);
-    }
+function loadData() {
+    var url =  'https://opentdb.com/api.php?amount=50';
+    if (sessionStorage.getItem('category') >8)
+        url = url + '&category=' + sessionStorage.getItem('category');
+    if (sessionStorage.getItem('difficulty') != null)
+        url = url + '&difficulty=' + sessionStorage.getItem('difficulty');
+    request.open('GET', url);
+
     request.onload = loadComplete;
     request.send();
-}
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-function filterFunction() {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    div = document.getElementById("myDropdown");
-    a = div.getElementsByTagName("a");
-    for (i = 0; i < a.length; i++) {
-        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-            a[i].style.display = "";
-        } else {
-            a[i].style.display = "none";
-        }
-    }
 }
 function shuffle(array) {
     // Essential Copy Pasting from StackOverflow
@@ -125,19 +101,26 @@ function shuffle(array) {
     return array;
 }
 
-function startTimer(duration) {
-    clearInterval();
-    var seconds_left = duration;
-    var interval = setInterval(function() {
+function timer(duration) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
 
-        //console.log(seconds_left);
-        document.getElementById('TimerLabel').innerHTML = seconds_left;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        if (seconds_left <= 0)
-        {
-            document.getElementById('TimerLabel').innerHTML = 'You are ready';
-            clearInterval(interval);
+        //display.textContent = minutes + ":" + seconds;
+        document.getElementById("TimerLabel").innerHTML = minutes + ":" + seconds;
+        if (--timer < 0) {
+            timer = duration;
+            sessionStorage.setItem('score', score);
+            window.location = "splash.html";
         }
-        seconds_left--;
     }, 1000);
 }
+
+window.onload = function () {
+    var aMinute = 6;
+    timer(aMinute);
+};

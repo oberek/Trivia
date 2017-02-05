@@ -1,18 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 body{
     background: #3F3F3E url("media/background.jpg");
 }
-
-h1{
-    font-variant: small-caps;
-    color: white;
-    font-family: "Century Gothic", sans-serif;
-    font-size: 30px;
-    padding: 10px;
-    background-color: #FF5454;
-    margin:0px;
-    width: 100%;
+#Header{
+    font-family: "Permanent Marker", sans-serif;
 }
-
 h3{
     text-align: center;
     padding: 10px;
@@ -22,12 +14,10 @@ h3{
 }
 
 button{
-    padding: 20px 0 20px 0;
     font-family: "Century Gothic", sans-serif;
     font-size: 25px;
     color: black;
     background-color: white;
-    border: 0px;
     border-radius: 3px;
     width: 500px;
     margin: 10px;
@@ -38,58 +28,75 @@ button{
     width: 656px;
     text-align: center;
 }
-button:hover {
+
+#answer1, #answer2, #answer3, #answer4{
+    border: 0px;
+    padding: 20px 0 20px 0;
+}
+
+#answer1:hover, #answer2:hover, #answer3:hover, #answer4:hover{
     font-weight: bold;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-.dropbtn {
-    background-color: #4CAF50;
+#score{
+    float: left;
     color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
+    font-size: 50px;
+    font-family: "Century Gothic";
+    margin-top: 120px;
+    margin-left:150px;
 }
 
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
-}
-#myInput {
-    border-box: box-sizing;
-    background-image: url('media/searchicon.png');
-    background-position: 14px 12px;
-    background-repeat: no-repeat;
-    font-size: 16px;
-    padding: 14px 20px 12px 45px;
-    border: none;
+#TimerLabel {
+    float: right;
+    color: white;
+    font-size: 50px;
+    font-family: "Century Gothic";
+    margin-top: 120px;
+    margin-right: 150px;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
+#logo{
+    width: 40px;
+    height: 40px;
+    margin-top: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f6f6f6;
-    min-width: 230px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown a:hover {background-color: #ddd}
-
-.show {display:block;}
 ul {
-    display: inline;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #FF5454;
+}
+
+li {
+    float: left;
+    color: white;
+    font-family: "Century Gothic", serif;
+    font-size: 25px;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+#homeButton{
+    float: right;
+    height: 60px;
+}
+
+#homeButton:hover {
+    font-weight: bold;
+    background-color: #333331;
+}
+#home{
+    width:40px;
+    height:auto;
 }

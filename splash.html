@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="splashStyle.css">
+    <link rel="shortcut icon" href="media/favicon.ico" type="image/x-icon">
+    <title>Splash</title>
+</head>
+<body>
+<img id="logo" src="media/titleLogo.png"/>
+<table>
+    <tr>
+        <td>
+            <button id="Categories" onclick="myFunction()" class="dropbtn"><a>Categories</a></button>
+            <div class="dropdown">
+                <div id="myDropdown" class="dropdown-content">
+                    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                    <a onclick="saveCat(9)">General Knowledge</a>
+                    <a onclick="saveCat(10)">Books</a>
+                    <a onclick="saveCat(11)">Film</a>
+                    <a onclick="saveCat(12)">Music</a>
+                    <a onclick="saveCat(13)">Musicals/Theatre</a>
+                    <a onclick="saveCat(14)">Television</a>
+                    <a onclick="saveCat(15)">Video Games</a>
+                    <a onclick="saveCat(16)">Board Games</a>
+                    <a onclick="saveCat(17)">Science</a>
+                    <a onclick="saveCat(18)">Computers</a>
+                    <a onclick="saveCat(19)">Math</a>
+                    <a onclick="saveCat(20)">Mythology</a>
+                    <a onclick="saveCat(21)">Sports</a>
+                    <a onclick="saveCat(22)">Geography</a>
+                    <a onclick="saveCat(23)">History</a>
+                    <a onclick="saveCat(24)">Politics</a>
+                    <a onclick="saveCat(25)">Art</a>
+                    <a onclick="saveCat(26)">Celebrities</a>
+                    <a onclick="saveCat(27)">Animals</a>
+                    <a onclick="saveCat(28)">Vehicles</a>
+                    <a onclick="saveCat(29)">Comics</a>
+                    <a onclick="saveCat(30)">Gadgets</a>
+                    <a onclick="saveCat(31)">Anime</a>
+                    <a onclick="saveCat(32)">Cartoons</a>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div id="Difficulty">
+                <button onclick="saveDiff('easy')">Easy</button>
+                <button onclick="saveDiff('medium')">Medium</button>
+                <button onclick="saveDiff('hard')">Hard</button>
+            </div>
+        </td>
+    </tr>
+</table>
+<div id="highScoreDisplay">
+    <p>HIGH SCORE</p>
+    <p id="HighScore">Score</p>
+</div>
+<form action="index.html" method="GET">
+    <button id="submit" onclick="setCookie(3)">SUBMIT</button>
+</form>
+
+<script src="splashScript.js"></script>
+</body>
+</html>
